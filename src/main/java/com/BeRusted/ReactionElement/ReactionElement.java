@@ -26,6 +26,7 @@ public class ReactionElement
     public void init(FMLInitializationEvent event)
     {
         // some example code
+        System.out.println("Hello World");
         logger.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
 }
