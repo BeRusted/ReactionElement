@@ -1,9 +1,7 @@
 package com.BeRusted.ReactionElement.events;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
