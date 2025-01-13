@@ -13,10 +13,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 //在这里注册方块
 @Mod.EventBusSubscriber
-public class BlockRegister {
+public class BlocksRegister {
     public static final Block test_block = new test_block();
 
-    public BlockRegister(){
+    public BlocksRegister(){
         MinecraftForge.EVENT_BUS.register(this);
     }
 

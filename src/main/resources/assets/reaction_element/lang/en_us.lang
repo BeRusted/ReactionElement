@@ -1,2 +1,3 @@
 item.reaction_element.test_item.name=test_item
+itemGroup.reaction_element=Reaction Element
 tile.reaction_element.test_block.name=test_block
