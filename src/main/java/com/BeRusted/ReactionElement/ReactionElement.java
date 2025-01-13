@@ -1,7 +1,7 @@
 package com.BeRusted.ReactionElement;
 
-import com.BeRusted.ReactionElement.Init.ModItems;
-import net.minecraftforge.common.MinecraftForge;
+import com.BeRusted.ReactionElement.register.ItemsRegister;
+import com.BeRusted.ReactionElement.register.ModelsRegister;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -19,8 +19,8 @@ public class ReactionElement
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        logger = event.getModLog();
-        MinecraftForge.EVENT_BUS.register(ModItems.class);
+        new ItemsRegister();
+        new ModelsRegister();
     }
 
     @EventHandler
