@@ -1,5 +1,6 @@
 package com.BeRusted.ReactionElement.register;
 
+import com.BeRusted.ReactionElement.ReactionElement;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;

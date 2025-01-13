@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "normal": { "model": "reaction_element:block/test_block" }
+  }
+}
