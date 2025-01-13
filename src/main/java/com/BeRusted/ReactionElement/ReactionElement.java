@@ -1,17 +1,11 @@
 package com.BeRusted.ReactionElement;
 
-import com.BeRusted.ReactionElement.register.BlockRegister;
-import com.BeRusted.ReactionElement.register.ItemsRegister;
-import com.BeRusted.ReactionElement.register.ModelsRegister;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
+import com.BeRusted.ReactionElement.register.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Random;
 
 @Mod(modid = ReactionElement.MODID, name = ReactionElement.NAME, version = ReactionElement.VERSION)
 public class ReactionElement
@@ -27,6 +21,8 @@ public class ReactionElement
         new ItemsRegister();
         new BlockRegister();
         new ModelsRegister();
+        new CreativeTabRegister();
+        new EventRegister();
     }
 
     @EventHandler
