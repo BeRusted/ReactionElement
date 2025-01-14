@@ -23,18 +23,18 @@ public class RecipesLoader {
     public static void RecipesLoader(RegistryEvent.Register<IRecipe> event){
         addShapedRecipe(
                 new ResourceLocation(ReactionElement.MODID, BlocksRegister.test_block.getRegistryName().toString()), // 配方名称
-                null,                                                   // 配方组
-                new ItemStack(BlocksRegister.test_block),                // 输出物品
-                "###",                                                  // 第一行
-                "###",                                                  // 第二行
-                "###",                                                  // 第三行
+                null,
+                new ItemStack(BlocksRegister.test_block),
+                "###",
+                "###",
+                "###",
                 '#', ItemsRegister.test_item
         );
 
         addShapelessRecipe(
                 new ResourceLocation(ReactionElement.MODID, ItemsRegister.test_item.getRegistryName().toString()), // 配方名称
-                null,                                                   // 配方组
-                new ItemStack(ItemsRegister.test_item,9),                // 输出物品
+                null,
+                new ItemStack(ItemsRegister.test_item,9),
                 Ingredient.fromItem(Item.getItemFromBlock(BlocksRegister.test_block))
         );
 

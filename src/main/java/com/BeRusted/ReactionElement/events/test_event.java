@@ -14,7 +14,6 @@ public class test_event{
         int itemCounter = event.getEntityItem().getItem().getCount();
 
         //使用本地化输出语句
-
         player.sendMessage(new TextComponentString("You Dropped"+" "+itemCounter+" "+itemName));
     }
 }
