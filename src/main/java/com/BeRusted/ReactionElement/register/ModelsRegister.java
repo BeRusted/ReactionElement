@@ -16,7 +16,7 @@ public class ModelsRegister {
     @SubscribeEvent
     public void registerModels(ModelRegistryEvent event) {
         registerModel(ItemsRegister.test_item);
-
+        registerModel(ItemsRegister.flame_sword);
     }
 
     private void registerModel(Item item) {
