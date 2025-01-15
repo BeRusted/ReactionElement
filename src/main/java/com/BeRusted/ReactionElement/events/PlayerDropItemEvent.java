@@ -5,7 +5,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class test_event{
+public class PlayerDropItemEvent {
 
     @SubscribeEvent
     public void test_event(ItemTossEvent event){

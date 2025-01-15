@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 
-public class test {
+public class PlayerClickEvent {
     @SubscribeEvent
     public void test(MouseEvent mouseEvent) {
         EntityPlayer player = Minecraft.getMinecraft().player;
