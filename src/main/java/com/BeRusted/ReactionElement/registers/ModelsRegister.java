@@ -1,4 +1,4 @@
-package com.BeRusted.ReactionElement.register;
+package com.BeRusted.ReactionElement.registers;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

@@ -1,6 +1,6 @@
 package com.BeRusted.ReactionElement.events;
 
-import com.BeRusted.ReactionElement.register.ItemsRegister;
+import com.BeRusted.ReactionElement.registers.ItemsRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;

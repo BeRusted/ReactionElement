@@ -1,4 +1,4 @@
-package com.BeRusted.ReactionElement.register;
+package com.BeRusted.ReactionElement.registers;
 
 import com.BeRusted.ReactionElement.blocks.test_block;
 import net.minecraft.block.Block;

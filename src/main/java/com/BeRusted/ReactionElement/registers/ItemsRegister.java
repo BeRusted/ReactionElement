@@ -1,4 +1,4 @@
-package com.BeRusted.ReactionElement.register;
+package com.BeRusted.ReactionElement.registers;
 
 import com.BeRusted.ReactionElement.items.flame_sword;
 import com.BeRusted.ReactionElement.items.test_item;

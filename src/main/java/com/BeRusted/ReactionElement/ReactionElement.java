@@ -1,8 +1,8 @@
 package com.BeRusted.ReactionElement;
 
 import com.BeRusted.ReactionElement.crafting.loaders.RecipesLoader;
-import com.BeRusted.ReactionElement.creativetabs.loaders.CreativeTabLoader;
-import com.BeRusted.ReactionElement.register.*;
+import com.BeRusted.ReactionElement.registers.CreativeTabsRegister;
+import com.BeRusted.ReactionElement.registers.*;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -25,7 +25,7 @@ public class ReactionElement
         new ModelsRegister();
         new EventsRegister();
 
-        new CreativeTabLoader();
+        new CreativeTabsRegister();
         new RecipesLoader();
     }
 

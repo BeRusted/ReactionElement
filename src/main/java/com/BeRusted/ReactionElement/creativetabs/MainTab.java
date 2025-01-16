@@ -1,7 +1,7 @@
-package com.BeRusted.ReactionElement.creativetabs.tabs;
+package com.BeRusted.ReactionElement.creativetabs;
 
 import com.BeRusted.ReactionElement.ReactionElement;
-import com.BeRusted.ReactionElement.register.ItemsRegister;
+import com.BeRusted.ReactionElement.registers.ItemsRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 

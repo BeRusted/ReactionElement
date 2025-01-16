@@ -2,8 +2,8 @@ package com.BeRusted.ReactionElement.crafting.loaders;
 
 
 import com.BeRusted.ReactionElement.ReactionElement;
-import com.BeRusted.ReactionElement.register.BlocksRegister;
-import com.BeRusted.ReactionElement.register.ItemsRegister;
+import com.BeRusted.ReactionElement.registers.BlocksRegister;
+import com.BeRusted.ReactionElement.registers.ItemsRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
