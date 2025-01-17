@@ -1,7 +1,6 @@
 package com.BeRusted.ReactionElement.registers;
 
-import com.BeRusted.ReactionElement.items.flame_sword;
-import com.BeRusted.ReactionElement.items.test_item;
+import com.BeRusted.ReactionElement.items.*;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -13,12 +12,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ItemsRegister {
     public static final Item test_item = new test_item();
     public static final Item flame_sword = new flame_sword();
+    public static final Item ice_sword = new ice_sword();
+    public static final Item light_sword = new light_sword();
 
     public ItemsRegister(){
         MinecraftForge.EVENT_BUS.register(this);
     }
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event){
-        event.getRegistry().registerAll(test_item,flame_sword);
+        event.getRegistry().registerAll(test_item,flame_sword,ice_sword,light_sword);
     }
 }
