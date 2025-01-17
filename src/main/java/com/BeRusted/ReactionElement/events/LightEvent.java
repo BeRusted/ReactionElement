@@ -8,27 +8,30 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.scoreboard.Score;
 import net.minecraft.scoreboard.ScoreObjective;
 import net.minecraft.scoreboard.Scoreboard;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.UUID;
 
 public class LightEvent {
     @SubscribeEvent
-    public void onEntityAttacked(LivingHurtEvent event) {
-        // 检测实体攻击
-        if (event.getSource().getTrueSource() instanceof EntityLivingBase) {
-            EntityLivingBase attacker = (EntityLivingBase) event.getSource().getTrueSource();
+    public void onEntityAttacked(LivingAttackEvent event) {
+        // 获取攻击者
+        Entity attacker = event.getSource().getTrueSource();
 
+        // 检测实体攻击
+        if (attacker instanceof EntityLivingBase) {
+            EntityLivingBase attackerLiving = (EntityLivingBase) attacker;
+
+            ItemStack heldItem = attackerLiving.getHeldItemMainhand();
             // 检测 flame_sword 攻击
-            ItemStack heldItem = attacker.getHeldItemMainhand();
             if (heldItem.getItem() == ItemsRegister.light_sword) {
                 // 获取被攻击的uuid
                 Entity target = event.getEntity();
 
 
                 // 获取记分板
-                Scoreboard scoreboard = attacker.getEntityWorld().getScoreboard();
+                Scoreboard scoreboard = attackerLiving.getEntityWorld().getScoreboard();
                 UUID uuid = target.getUniqueID();
 
                 String objectiveName = UUIDEncryptor.encryptUUID(uuid);
@@ -40,10 +43,6 @@ public class LightEvent {
                     objective.setDisplayName(objectiveName);
                     scoreboard.setObjectiveInDisplaySlot(1, objective); // 右侧显示
                 }
-
-                // 用uuid记名
-                //String targetUUID = target.getUniqueID().toString();
-
 
                 Score score = scoreboard.getOrCreateScore("light", objective);
 
