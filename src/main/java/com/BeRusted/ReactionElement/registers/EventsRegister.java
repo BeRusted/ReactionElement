@@ -12,7 +12,7 @@ public class EventsRegister {
         MinecraftForge.EVENT_BUS.register(new PlayerDropItemEvent());
         //MinecraftForge.EVENT_BUS.register(new PlayerClickEvent());
         MinecraftForge.EVENT_BUS.register(new FireEvent());
-        MinecraftForge.EVENT_BUS.register(new onEntityAttacked());
+        //MinecraftForge.EVENT_BUS.register(new onEntityAttacked());
     }
 }
 
