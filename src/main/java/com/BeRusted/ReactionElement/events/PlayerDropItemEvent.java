@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class PlayerDropItemEvent {
 
     @SubscribeEvent
-    public void test_event(ItemTossEvent event){
+    public void PlayerClickEvent(ItemTossEvent event){
         EntityPlayer player = event.getPlayer();
         String itemName = event.getEntityItem().getItem().getDisplayName();
         int itemCounter = event.getEntityItem().getItem().getCount();

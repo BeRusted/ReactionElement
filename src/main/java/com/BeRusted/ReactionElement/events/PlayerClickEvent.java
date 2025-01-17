@@ -8,7 +8,7 @@ import net.minecraft.util.text.TextComponentString;
 
 public class PlayerClickEvent {
     @SubscribeEvent
-    public void test(MouseEvent mouseEvent) {
+    public void PlayerClickEvent(MouseEvent mouseEvent) {
         EntityPlayer player = Minecraft.getMinecraft().player;
 
         if (mouseEvent.isButtonstate()) {
