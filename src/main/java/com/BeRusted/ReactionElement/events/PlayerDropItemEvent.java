@@ -6,7 +6,6 @@ import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class PlayerDropItemEvent {
-
     @SubscribeEvent
     public void PlayerClickEvent(ItemTossEvent event){
         EntityPlayer player = event.getPlayer();
