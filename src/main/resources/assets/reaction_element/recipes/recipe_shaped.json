@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "reaction_element:test_item"
+    }
+  },
+  "result": {
+    "item": "reaction_element:test_block",
+    "count": 1
+  }
+}
