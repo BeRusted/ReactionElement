@@ -20,6 +20,7 @@ public class ModelsRegister {
         registerModel(ItemsRegister.test_item);
         registerModel(ItemsRegister.flame_sword);
         registerModel(ItemsRegister.ice_sword);
+        registerModel(ItemsRegister.lightning_sword);
 
     }
 
