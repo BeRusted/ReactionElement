@@ -9,10 +9,10 @@ import net.minecraft.item.ItemStack;
 
 import static com.BeRusted.ReactionElement.effects.tools.addEffect.addTimedEffect;
 
-public class flame_sword extends Item{
-    private static String item_name = "flame_sword";
+public class ice_sword extends Item{
+    private static String item_name = "ice_sword";
 
-    public flame_sword(){
+    public ice_sword(){
         super();
         this.setRegistryName(item_name);
         this.setUnlocalizedName(ReactionElement.MODID+"."+item_name);
@@ -21,11 +21,12 @@ public class flame_sword extends Item{
 
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker){
+
         //附加永久效果
-        //addCustomEffectToEntity(target, CustomEffect.FIRE); // 举例：附加火属性
+        //addCustomEffectToEntity(target, CustomEffect.ICE); // 举例：附加火属性
 
         //附加具有时间限制的效果
-        addTimedEffect(target,CustomEffect.FIRE);
+        addTimedEffect(target,CustomEffect.ICE);
 
         return super.hitEntity(stack, target, attacker);
     }

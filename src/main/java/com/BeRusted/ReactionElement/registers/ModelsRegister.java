@@ -19,6 +19,8 @@ public class ModelsRegister {
     public void registerModels(ModelRegistryEvent event) {
         registerModel(ItemsRegister.test_item);
         registerModel(ItemsRegister.flame_sword);
+        registerModel(ItemsRegister.ice_sword);
+
     }
 
     private void registerModel(Item item) {

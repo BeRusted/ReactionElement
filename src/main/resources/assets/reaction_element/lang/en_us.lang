@@ -1,5 +1,6 @@
 item.reaction_element.test_item.name=test_item
 item.reaction_element.flame_sword.name=Flame Sword
+item.reaction_element.ice_sword.name=Ice Sword
 
 itemGroup.reaction_element.maintab=Reaction Element MainTab
 itemGroup.reaction_element.subtab=Reaction Element SubTab

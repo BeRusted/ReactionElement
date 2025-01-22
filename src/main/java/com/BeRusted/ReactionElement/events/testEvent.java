@@ -7,7 +7,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-public class FireEvent {
+public class testEvent {
     @SubscribeEvent
     public void FireEvent(AttackEntityEvent event){
         EntityPlayer player = event.getEntityPlayer();
