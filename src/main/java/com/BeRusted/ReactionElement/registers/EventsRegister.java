@@ -9,11 +9,9 @@ import net.minecraftforge.fml.common.Mod;
 public class EventsRegister {
     public EventsRegister(){
 
-        MinecraftForge.EVENT_BUS.register(new PlayerDropItemEvent());
-        MinecraftForge.EVENT_BUS.register(new PlayerClickEvent());
+        //注册事件
         MinecraftForge.EVENT_BUS.register(new onLivingUpdate());
 
-        MinecraftForge.EVENT_BUS.register(new testEvent());
     }
 }
 

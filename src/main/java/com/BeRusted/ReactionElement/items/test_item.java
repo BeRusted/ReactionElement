@@ -5,6 +5,7 @@ import com.BeRusted.ReactionElement.registers.CreativeTabsRegister;
 import net.minecraft.item.Item;
 
 public class test_item extends Item {
+
     private static String item_name = "test_item";
 
     public test_item(){

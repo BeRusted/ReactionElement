@@ -5,6 +5,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import java.util.UUID;
+
 public class addEffect {
 
     //永久存在
@@ -50,6 +52,9 @@ public class addEffect {
             NBTTagCompound newEffect = new NBTTagCompound();
             newEffect.setString("Effect", effect.getName());
             newEffect.setLong("StartTime", entity.world.getTotalWorldTime()); // 记录附加时间
+            //使用uuid来区分多个相同的属性
+            newEffect.setString("UUID", UUID.randomUUID().toString());
+
             effects.appendTag(newEffect);
         }
 
