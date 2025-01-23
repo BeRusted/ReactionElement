@@ -5,6 +5,8 @@ item.reaction_element.lightning_sword.name=Lightning Sword
 item.reaction_element.dark_sword.name=Dark Sword
 item.reaction_element.water_sword.name=Water Sword
 item.reaction_element.health_sword.name=Health Sword
+item.reaction_element.bow_sword.name=Bow Sword
+
 
 itemGroup.reaction_element.maintab=Reaction Element Items
 itemGroup.reaction_element.subtab=Reaction Element Weapons

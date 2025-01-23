@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "YXY",
+    "   "
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:bow"
+    },
+    "Y": {
+      "item": ""
+    }
+  },
+  "result": {
+    "item": "reaction_element:bow_sword",
+    "count": 1
+  }
+}
+
