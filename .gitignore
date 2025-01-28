@@ -1,0 +1,11 @@
+/build
+/.idea
+
+/run/config
+/run/llibrary
+/run/logs
+/run/saves
+/run/resourcepacks
+/run/options.txt
+/run/usercache.json
+/run/usernamecache.json
