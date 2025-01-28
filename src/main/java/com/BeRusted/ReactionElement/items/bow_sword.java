@@ -11,7 +11,6 @@ public class bow_sword extends Item{
     public bow_sword(){
         super();
         this.setRegistryName(item_name);
-        this.setUnlocalizedName(ReactionElement.MODID+"."+item_name);
         this.setCreativeTab(CreativeTabsRegister.SubTab);
     }
 

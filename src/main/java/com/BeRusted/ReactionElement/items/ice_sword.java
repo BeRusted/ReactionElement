@@ -15,7 +15,6 @@ public class ice_sword extends Item{
     public ice_sword(){
         super();
         this.setRegistryName(item_name);
-        this.setUnlocalizedName(ReactionElement.MODID+"."+item_name);
         this.setCreativeTab(CreativeTabsRegister.SubTab);
     }
 

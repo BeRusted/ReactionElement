@@ -15,7 +15,6 @@ public class test_block extends Block {
         super(Material.GROUND, MapColor.DIRT);
         String block_name = "test_block";
         this.setRegistryName(block_name);
-        this.setUnlocalizedName(ReactionElement.MODID+"."+block_name);
         this.setCreativeTab(CreativeTabs.MISC);
         this.setHardness(0.5f);
         this.setResistance(10);

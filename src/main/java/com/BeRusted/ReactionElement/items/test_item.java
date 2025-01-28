@@ -11,7 +11,6 @@ public class test_item extends Item {
     public test_item(){
         super();
         this.setRegistryName(item_name);
-        this.setUnlocalizedName(ReactionElement.MODID+"."+item_name);
         this.setCreativeTab(CreativeTabsRegister.MainTab);
     }
 }

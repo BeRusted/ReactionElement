@@ -15,7 +15,6 @@ public class lightning_sword extends Item{
     public lightning_sword(){
         super();
         this.setRegistryName(item_name);
-        this.setUnlocalizedName(ReactionElement.MODID+"."+item_name);
         this.setCreativeTab(CreativeTabsRegister.SubTab);
     }
 

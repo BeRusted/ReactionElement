@@ -10,9 +10,15 @@ public class SubTab extends CreativeTabs {
     public SubTab(){
         super(ReactionElement.MODID+".subtab");
     }
-
+    /*
     @Override
     public ItemStack getTabIconItem() {
+        return ItemsRegister.flame_sword.getDefaultInstance();
+    }
+
+     */
+    @Override
+    public ItemStack createIcon(){
         return ItemsRegister.flame_sword.getDefaultInstance();
     }
 }
