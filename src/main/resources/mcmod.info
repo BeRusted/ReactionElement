@@ -1,16 +1,16 @@
 [
-{
-  "modid": "${mod_id}",
-  "name": "${mod_name}",
-  "description": "${mod_description}",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ${mod_author},
-  "credits": "${mod_credits}",
-  "logoFile":, "assets/reaction_element/textures/logo.png",
-  "screenshots": [],
-  "dependencies": []
-}
+	{
+		"modid": "reaction_element",
+		"name": "Reaction Element",
+		"description": "",
+		"version": "0.0.1",
+		"mcversion": "1.12.2",
+		"url": "",
+		"updateUrl": "",
+		"authorList": ["Mplan","Lewe"],
+		"credits": "Made By BeRusted",
+		"logoFile": "",
+		"screenshots": [],
+		"dependencies": []
+	}
 ]
