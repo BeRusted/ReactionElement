@@ -2,11 +2,11 @@ package com.BeRusted.ReactionElement;
 
 import com.BeRusted.ReactionElement.registers.CreativeTabsRegister;
 import com.BeRusted.ReactionElement.registers.*;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
+//import com.BeRusted.ReactionElement;
 
 @Mod(modid = ReactionElement.MODID, name = ReactionElement.NAME, version = ReactionElement.VERSION)
 public class ReactionElement
@@ -27,11 +27,6 @@ public class ReactionElement
 
     }
 
-    @EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-
-    }
 
 
 }
