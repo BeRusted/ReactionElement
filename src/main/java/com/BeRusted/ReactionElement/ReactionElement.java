@@ -23,7 +23,6 @@ public class ReactionElement
         new BlocksRegister();
         new ModelsRegister();
         new EventsRegister();
-
         new CreativeTabsRegister();
     }
 

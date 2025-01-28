@@ -22,8 +22,6 @@ public class ice_sword extends Item{
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker){
 
-        //附加永久效果
-        //addCustomEffectToEntity(target, CustomEffect.ICE); // 举例：附加火属性
 
         //附加具有时间限制的效果
         addTimedEffect(target,CustomEffect.ICE);
