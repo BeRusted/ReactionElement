@@ -15,6 +15,7 @@ public class dark_sword extends Item{
     public dark_sword(){
         super();
         this.setRegistryName(item_name);
+        this.setTranslationKey(ReactionElement.MODID +"."+ item_name);
         this.setCreativeTab(CreativeTabsRegister.SubTab);
     }
 

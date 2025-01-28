@@ -15,6 +15,7 @@ public class health_sword extends Item{
     public health_sword(){
         super();
         this.setRegistryName(item_name);
+        this.setTranslationKey(ReactionElement.MODID +"."+ item_name);
         this.setCreativeTab(CreativeTabsRegister.SubTab);
     }
 
