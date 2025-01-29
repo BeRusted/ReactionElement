@@ -6,7 +6,8 @@ public enum CustomEffect {
     LIGHTNING("lightning",3),
     DARK("dark",4),
     WATER("water",5),
-    HEALTH("health",6);
+    HEALTH("health",6),
+    LIGHT("light",7);
 
     private final String name;
     private final int id;

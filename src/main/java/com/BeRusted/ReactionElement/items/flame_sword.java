@@ -16,7 +16,7 @@ public class flame_sword extends Item{
         super();
         this.setRegistryName(item_name);
         this.setTranslationKey(ReactionElement.MODID +"."+ item_name);
-        this.setCreativeTab(CreativeTabsRegister.SubTab);
+        this.setCreativeTab(CreativeTabsRegister.MainTab);
     }
 
     @Override

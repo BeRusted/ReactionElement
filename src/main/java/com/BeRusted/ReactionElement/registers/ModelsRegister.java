@@ -17,13 +17,14 @@ public class ModelsRegister {
     }
     @SubscribeEvent
     public void registerModels(ModelRegistryEvent event) {
-        registerModel(ItemsRegister.test_item);
+        registerModel(ItemsRegister.symbol_item);
         registerModel(ItemsRegister.flame_sword);
         registerModel(ItemsRegister.ice_sword);
         registerModel(ItemsRegister.lightning_sword);
         registerModel(ItemsRegister.dark_sword);
         registerModel(ItemsRegister.water_sword);
         registerModel(ItemsRegister.health_sword);
+        registerModel(ItemsRegister.light_sword);
     }
 
     private void registerModel(Item item) {

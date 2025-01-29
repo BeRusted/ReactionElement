@@ -16,13 +16,11 @@ public class dark_sword extends Item{
         super();
         this.setRegistryName(item_name);
         this.setTranslationKey(ReactionElement.MODID +"."+ item_name);
-        this.setCreativeTab(CreativeTabsRegister.SubTab);
+        this.setCreativeTab(CreativeTabsRegister.MainTab);
     }
 
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker){
-        //附加永久效果
-        //addCustomEffectToEntity(target, CustomEffect.FIRE); // 举例：附加火属性
 
         //附加具有时间限制的效果
         addTimedEffect(target,CustomEffect.DARK);

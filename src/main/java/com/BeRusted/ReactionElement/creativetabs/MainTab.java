@@ -11,14 +11,8 @@ public class MainTab extends CreativeTabs {
 
         super(ReactionElement.MODID+".maintab");
     }
-    /*
-    @Override
-    public ItemStack getTabIconItem(){
-        return ItemsRegister.test_item.getDefaultInstance();
-    }
-    */
     @Override
     public ItemStack createIcon() {
-        return ItemsRegister.test_item.getDefaultInstance();
+        return ItemsRegister.symbol_item.getDefaultInstance();
     }
 }
