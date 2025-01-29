@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
-//这里用来注册物品或模型的材质材质
+//注册物品或模型的材质材质
 @Mod.EventBusSubscriber
 public class ModelsRegister {
     public ModelsRegister(){

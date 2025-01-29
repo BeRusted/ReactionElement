@@ -4,16 +4,20 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import static com.BeRusted.ReactionElement.effects.tools.handleCombinedEffects.handleCombinedEffects;
-import static com.BeRusted.ReactionElement.effects.tools.clearEffect.*;
+import static com.BeRusted.ReactionElement.element.elementControl.clearElement;
 
 public class onLivingUpdate {
+    private static int tickCounter = 0;
+
     @SubscribeEvent
-    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event){
-        if(event.getEntityLiving() instanceof EntityLivingBase){
-            EntityLivingBase entityLivingBase = (EntityLivingBase) event.getEntityLiving();
-            handleCombinedEffects(entityLivingBase);
-            autoRemoveEffect(entityLivingBase);
+    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+        if (event.getEntityLiving() instanceof EntityLivingBase) {
+            EntityLivingBase entityLivingBase = event.getEntityLiving();
+            tickCounter++;
+            if (tickCounter >= 100) {
+                clearElement(entityLivingBase);
+                tickCounter = 0;
+            }
         }
     }
 }

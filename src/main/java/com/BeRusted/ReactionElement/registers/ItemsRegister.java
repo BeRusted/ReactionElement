@@ -7,7 +7,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-//这里用来注册物品
+//注册物品
 @Mod.EventBusSubscriber
 public class ItemsRegister {
     public static final Item flame_sword = new flame_sword();
