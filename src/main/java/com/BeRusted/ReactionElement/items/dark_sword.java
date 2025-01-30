@@ -22,7 +22,7 @@ public class dark_sword extends Item{
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker){
 
         //附加具有时间限制的效果
-        elementControl.reaction(target, ElementDepot.DARK);
+        elementControl.reaction(target, ElementDepot.DARK, attacker);
 
         return super.hitEntity(stack, target, attacker);
     }

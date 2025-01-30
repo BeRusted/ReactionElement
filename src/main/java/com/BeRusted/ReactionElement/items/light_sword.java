@@ -24,7 +24,7 @@ public class light_sword extends Item{
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker){
 
         //附加具有时间限制的效果
-        elementControl.reaction(target, ElementDepot.LIGHT);
+        elementControl.reaction(target, ElementDepot.LIGHT, attacker);
 
         return super.hitEntity(stack, target, attacker);
     }

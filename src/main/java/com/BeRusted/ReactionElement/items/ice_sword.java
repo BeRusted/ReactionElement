@@ -24,7 +24,7 @@ public class ice_sword extends Item{
 
 
         //附加具有时间限制的效果
-        elementControl.reaction(target, ElementDepot.ICE);
+        elementControl.reaction(target, ElementDepot.ICE, attacker);
 
         return super.hitEntity(stack, target, attacker);
     }

@@ -23,7 +23,7 @@ public class health_sword extends Item{
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker){
 
         //附加具有时间限制的效果
-        elementControl.reaction(target, ElementDepot.HEALTH);
+        elementControl.reaction(target, ElementDepot.HEALTH, attacker);
 
         return super.hitEntity(stack, target, attacker);
     }

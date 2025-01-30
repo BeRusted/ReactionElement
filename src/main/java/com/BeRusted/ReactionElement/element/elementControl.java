@@ -9,7 +9,7 @@ import net.minecraft.nbt.NBTTagCompound;
 public class elementControl {
 
     // 元素反应
-    public static void reaction(EntityLivingBase target, ElementDepot newElement) {
+    public static void reaction(EntityLivingBase target, ElementDepot newElement, EntityLivingBase attacker) {
         NBTTagCompound nbt = target.getEntityData();
         if (!nbt.hasKey("ElementData")) {
             nbt.setTag("ElementData", new NBTTagCompound()); // 初始化生物的元素nbt组,名为ElementData
@@ -22,7 +22,7 @@ public class elementControl {
         if (elementData.hasKey(newElementName)) { // 检查是否已有相同元素
             int currentValue = elementData.getInteger(newElementName);
             if (currentValue >= 100) {
-                System.out.println("发生同元素反应"); // 有就触发同元素反应
+                reactionDepot.invokeReaction(newElementName, newElementName, target, attacker);//发生同元素反应
                 elementData.setInteger(newElementName, 0); // 清空该元素的计数
                 sameElementReacted =true;
             }
@@ -37,7 +37,7 @@ public class elementControl {
                 }
             }
             if (reactingElement != null) {
-                System.out.println("发生不同元素反应"); // 触发不同元素反应
+                reactionDepot.invokeReaction(newElementName, reactingElement, target, attacker); // 触发不同元素反应
                 elementData.setInteger(reactingElement, elementData.getInteger(reactingElement) - 50); // 扣除反应元素计数 50
             } else if (!elementData.hasKey(newElementName)) {
                 addElement(target, newElement); // 仅在无法发生元素反应且这个元素不存在时添加新元素
