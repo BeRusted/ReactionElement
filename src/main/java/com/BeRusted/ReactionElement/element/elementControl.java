@@ -3,7 +3,7 @@ package com.BeRusted.ReactionElement.element;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 
-//一个元素来了,先看生物的元素中有没有这个元素(有就让//元素添加//不要进行了)或可反应元素,有的话数值是多少(可以同类反应就让//元素累加//不要进行了),决定受否发生反应并减少元素数值
+//一个元素来了,若能发生 同元素反应 就发生,若不能且不能发生 不同元素反应 就 +50 或 添加新元素
 //随着生物nbt更新,发生//元素衰减和消失//
 
 public class elementControl {
@@ -12,23 +12,26 @@ public class elementControl {
     public static void reaction(EntityLivingBase target, ElementDepot newElement) {
         NBTTagCompound nbt = target.getEntityData();
         if (!nbt.hasKey("ElementData")) {
-            nbt.setTag("ElementData", new NBTTagCompound()); // 初始化新来的元素的数据
+            nbt.setTag("ElementData", new NBTTagCompound()); // 初始化生物的元素nbt组,名为ElementData
         }
         NBTTagCompound elementData = nbt.getCompoundTag("ElementData");
 
         String newElementName = newElement.getName();
+        boolean sameElementReacted = false;
+
         if (elementData.hasKey(newElementName)) { // 检查是否已有相同元素
             int currentValue = elementData.getInteger(newElementName);
             if (currentValue >= 100) {
                 System.out.println("发生同元素反应"); // 有就触发同元素反应
                 elementData.setInteger(newElementName, 0); // 清空该元素的计数
-            } else {
-                accumulateElementNumber(target, newElement, 50); // 有但数值不够则累加
+                sameElementReacted =true;
             }
-        } else { // 处理不同元素的情况
+        }
+
+        if (!sameElementReacted) { // 仅在未发生同元素反应时，检查不同元素反应
             String reactingElement = null;
             for (String key : elementData.getKeySet()) {
-                if (!key.equals(newElementName) && elementData.getInteger(key) >= 50) {// 循环找一遍且只找比50大的
+                if (!key.equals(newElementName) && elementData.getInteger(key) >= 50) {//循环一遍找数值大于 50 的不同元素
                     reactingElement = key;
                     break;
                 }
@@ -36,11 +39,12 @@ public class elementControl {
             if (reactingElement != null) {
                 System.out.println("发生不同元素反应"); // 触发不同元素反应
                 elementData.setInteger(reactingElement, elementData.getInteger(reactingElement) - 50); // 扣除反应元素计数 50
+            } else if (!elementData.hasKey(newElementName)) {
+                addElement(target, newElement); // 仅在无法发生元素反应且这个元素不存在时添加新元素
             } else {
-                addElement(target, newElement); // 否则添加新元素
+                accumulateElementNumber(target, newElement, 50); // 仅在无法发生元素反应时且元素存在时累加数值 50 点
             }
         }
-
         nbt.setTag("ElementData", elementData);
         target.writeEntityToNBT(nbt);
     }
