@@ -2,8 +2,9 @@ package com.BeRusted.ReactionElement.element;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
-//一个元素来了,若能发生 同元素反应 就发生,若不能且不能发生 不同元素反应 就 +50 或 添加新元素
+//一个元素来了,若能发生 同元素反应 就发生,若不能且不能发生 不同元素反应 就 加若干元素数值 或 添加新元素
 //随着生物nbt更新,发生//元素衰减和消失//
 
 public class elementControl {
@@ -41,8 +42,9 @@ public class elementControl {
                 elementData.setInteger(reactingElement, elementData.getInteger(reactingElement) - 50); // 扣除反应元素计数 50
             } else if (!elementData.hasKey(newElementName)) {
                 addElement(target, newElement); // 仅在无法发生元素反应且这个元素不存在时添加新元素
+                accumulateElementNumber(target, newElement, damageCount(target));
             } else {
-                accumulateElementNumber(target, newElement, 50); // 仅在无法发生元素反应时且元素存在时累加数值 50 点
+                accumulateElementNumber(target, newElement, damageCount(target)); // 仅在无法发生元素反应时且元素存在时累加数值
             }
         }
         nbt.setTag("ElementData", elementData);
@@ -53,7 +55,7 @@ public class elementControl {
     public static void addElement(EntityLivingBase target, ElementDepot element) {
         NBTTagCompound nbt = target.getEntityData();
         NBTTagCompound elementData = nbt.getCompoundTag("ElementData");
-        elementData.setInteger(element.getName(), 50);
+        elementData.setInteger(element.getName(), 0);
         nbt.setTag("ElementData", elementData);
         target.writeEntityToNBT(nbt);
     }
@@ -81,4 +83,34 @@ public class elementControl {
         nbt.setTag("ElementData", elementData);
         target.writeEntityToNBT(nbt);
     }
+
+    //计算元素数值增加多少
+    public static int damageCount(EntityLivingBase target) {
+        float damage = 0;
+        if (target.getEntityData().hasKey("REdamage")) {
+            damage = target.getEntityData().getFloat("REdamage");
+        }
+        return 25+(int)damage;
+    }
 }
+/*
+// 计算元素数值增加多少, 与收到的伤害相关，最低 25 点
+    public static int damageCount(EntityLivingBase target) {
+        float lastDamage = 0;
+        if (target.getEntityData().hasKey("LastDamage")) {
+            lastDamage = target.getEntityData().getFloat("LastDamage");
+        }
+        return Math.max(25, (int) lastDamage);
+    }
+
+    // 监听生物受到伤害事件，记录伤害值
+    public static void onLivingDamage(LivingDamageEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        float damage = event.getAmount();
+        entity.getEntityData().setFloat("LastDamage", damage);
+    }
+
+
+
+
+* */

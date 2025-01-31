@@ -1,5 +1,6 @@
 package com.BeRusted.ReactionElement.registers;
 
+import com.BeRusted.ReactionElement.element.ElementDepot;
 import com.BeRusted.ReactionElement.items.*;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
@@ -10,14 +11,17 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 //注册物品
 @Mod.EventBusSubscriber
 public class ItemsRegister {
-    public static final Item flame_sword = new flame_sword();
-    public static final Item ice_sword = new ice_sword();
-    public static final Item lightning_sword = new lightning_sword();
-    public static final Item dark_sword = new dark_sword();
-    public static final Item water_sword = new water_sword();
-    public static final Item health_sword = new health_sword();
-    public static final Item symbol_item = new symbol_item();
-    public static final Item light_sword = new light_sword();
+    // 测试用物品
+    public static final Item flame_sword = new elementizeItem("flame_sword", ElementDepot.FIRE);
+    public static final Item ice_sword = new elementizeItem("ice_sword", ElementDepot.ICE);
+    public static final Item lightning_sword = new elementizeItem("lightning_sword", ElementDepot.LIGHTNING);
+    public static final Item dark_sword = new elementizeItem("dark_sword", ElementDepot.DARK);
+    public static final Item water_sword = new elementizeItem("water_sword", ElementDepot.WATER);
+    public static final Item health_sword = new elementizeItem("health_sword", ElementDepot.HEALTH);
+    public static final Item light_sword = new elementizeItem("light_sword", ElementDepot.LIGHT);
+
+    // 模组象征
+    public static final Item symbol_item = new elementizeItem();
 
     public ItemsRegister(){
         MinecraftForge.EVENT_BUS.register(this);
