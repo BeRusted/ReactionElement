@@ -47,7 +47,7 @@ public class elementizeItem extends Item {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
         }
-        stack.getTagCompound().setString("ElementData", element.getName()); // 赋值元素
+        stack.getTagCompound().setString("ElementData", element.getName());
     }
 
     // 在物品信息中显示元素 ( 同时也是保证物品的 NBT 存在 )
@@ -56,7 +56,8 @@ public class elementizeItem extends Item {
         ensureElementData(stack);
         ElementDepot element = ElementDepot.valueOf(getElementData(stack));
         if (!element.equals(ElementDepot.DEFAULT)) {
-            tooltip.add(element.getColor() + I18n.translateToLocal("元素: ") + element.getName());
+            String localizedElementName = I18n.translateToLocal("element." + element.getName().toLowerCase());//不同语言要改名称
+            tooltip.add(element.getColor() + localizedElementName);
         }
     }
 

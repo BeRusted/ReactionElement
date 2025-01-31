@@ -18,7 +18,7 @@ public class ModelsRegister {
     @SubscribeEvent
     public void registerModels(ModelRegistryEvent event) {
         registerModel(ItemsRegister.symbol_item);
-        registerModel(ItemsRegister.flame_sword);
+        registerModel(ItemsRegister.fire_sword);
         registerModel(ItemsRegister.ice_sword);
         registerModel(ItemsRegister.lightning_sword);
         registerModel(ItemsRegister.dark_sword);

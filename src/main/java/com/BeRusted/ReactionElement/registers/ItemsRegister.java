@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class ItemsRegister {
     // 测试用物品
-    public static final Item flame_sword = new elementizeItem("flame_sword", ElementDepot.FIRE);
+    public static final Item fire_sword = new elementizeItem("fire_sword", ElementDepot.FIRE);
     public static final Item ice_sword = new elementizeItem("ice_sword", ElementDepot.ICE);
     public static final Item lightning_sword = new elementizeItem("lightning_sword", ElementDepot.LIGHTNING);
     public static final Item dark_sword = new elementizeItem("dark_sword", ElementDepot.DARK);
@@ -28,6 +28,6 @@ public class ItemsRegister {
     }
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event){
-        event.getRegistry().registerAll(symbol_item,flame_sword,ice_sword,lightning_sword,dark_sword,water_sword,health_sword,light_sword);
+        event.getRegistry().registerAll(symbol_item,fire_sword,ice_sword,lightning_sword,dark_sword,water_sword,health_sword,light_sword);
     }
 }
