@@ -10,7 +10,7 @@ public class onLivingUpdate {
     private static int tickCounter = 0;
 
     @SubscribeEvent
-    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
+    public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {//用于控制元素数值的自然流逝
         if (event.getEntityLiving() instanceof EntityLivingBase) {
             EntityLivingBase entityLivingBase = event.getEntityLiving();
             tickCounter++;

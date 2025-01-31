@@ -1,6 +1,7 @@
 package com.BeRusted.ReactionElement.element;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 
@@ -92,25 +93,6 @@ public class elementControl {
         }
         return 25+(int)damage;
     }
+
+
 }
-/*
-// 计算元素数值增加多少, 与收到的伤害相关，最低 25 点
-    public static int damageCount(EntityLivingBase target) {
-        float lastDamage = 0;
-        if (target.getEntityData().hasKey("LastDamage")) {
-            lastDamage = target.getEntityData().getFloat("LastDamage");
-        }
-        return Math.max(25, (int) lastDamage);
-    }
-
-    // 监听生物受到伤害事件，记录伤害值
-    public static void onLivingDamage(LivingDamageEvent event) {
-        EntityLivingBase entity = event.getEntityLiving();
-        float damage = event.getAmount();
-        entity.getEntityData().setFloat("LastDamage", damage);
-    }
-
-
-
-
-* */
