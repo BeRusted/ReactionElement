@@ -2,14 +2,11 @@ package com.BeRusted.ReactionElement.items;
 
 import com.BeRusted.ReactionElement.ReactionElement;
 import com.BeRusted.ReactionElement.element.ElementDepot;
-import com.BeRusted.ReactionElement.element.elementControl;
 import com.BeRusted.ReactionElement.registers.CreativeTabsRegister;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -54,26 +51,6 @@ public class elementizeItem extends Item {
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         ensureElementData(stack);
-        ElementDepot element = ElementDepot.valueOf(getElementData(stack));
-        if (!element.equals(ElementDepot.DEFAULT)) {
-            String localizedElementName = I18n.translateToLocal("element." + element.getName().toLowerCase());//不同语言要改名称
-            tooltip.add(element.getColor() + localizedElementName);
-        }
     }
 
-    // 物品攻击生物时，触发元素反应
-    @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
-        ElementDepot itemElement = ElementDepot.valueOf(getElementData(stack).toUpperCase());
-        elementControl.reaction(target, itemElement, attacker);
-        return super.hitEntity(stack, target, attacker);
-    }
-
-    // 获取物品的 ElementData
-    public static String getElementData(ItemStack stack) {
-        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("ElementData")) {
-            return stack.getTagCompound().getString("ElementData").toUpperCase();
-        }
-        return "DEFAULT";
-    }
 }

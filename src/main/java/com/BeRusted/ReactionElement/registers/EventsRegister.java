@@ -11,7 +11,9 @@ public class EventsRegister {
 
 
         MinecraftForge.EVENT_BUS.register(new onLivingUpdate());
-        MinecraftForge.EVENT_BUS.register(new onLivingDamage());
+        MinecraftForge.EVENT_BUS.register(new controlReaction());
+        MinecraftForge.EVENT_BUS.register(new elementTooltipHandler());
+
 
     }
 }

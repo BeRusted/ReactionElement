@@ -1,14 +1,83 @@
-package com.BeRusted.ReactionElement.element;
+package com.BeRusted.ReactionElement.events;
 
+import com.BeRusted.ReactionElement.element.ElementDepot;
+import com.BeRusted.ReactionElement.element.reactionDepot;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.util.DamageSource;
 
-//一个元素来了,若能发生 同元素反应 就发生,若不能且不能发生 不同元素反应 就 加若干元素数值 或 添加新元素
-//随着生物nbt更新,发生//元素衰减和消失//
+// 监听生物受到伤害事件，只有来自带元素 NBT 的物品的攻击才会记录 REdamage
+public class controlReaction {
+    @SubscribeEvent
+    public void onLivingDamageEvent(LivingDamageEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        DamageSource source = event.getSource();
 
-public class elementControl {
+        if (source.getTrueSource() instanceof EntityLivingBase) {
+            EntityLivingBase attacker = (EntityLivingBase) source.getTrueSource();
+
+            // 检查主手和副手的武器是否包含元素 NBT 标签
+            ItemStack mainHandItem = attacker.getHeldItemMainhand();
+            ItemStack offHandItem = attacker.getHeldItemOffhand();
+
+            boolean isPlayerAttack = source.getDamageType().equals("player");
+
+            if (isPlayerAttack) {
+                if (isOffHandAttack(source)) {
+                    if (hasElementData(offHandItem)) {
+                        processReaction(offHandItem, entity, attacker, event.getAmount());
+                    }
+                } else {
+                    if (hasElementData(mainHandItem)) {
+                        processReaction(mainHandItem, entity, attacker, event.getAmount());
+                    }
+                }
+            } else {
+                // 如果是怪物或其他生物，检查主手武器
+                if (attacker instanceof IMob && hasElementData(mainHandItem)) {
+                    processReaction(mainHandItem, entity, attacker, event.getAmount());
+                }
+            }
+        }
+    }
+
+    // 检查物品是否包含 "ElementData" NBT 标签
+    private boolean hasElementData(ItemStack itemStack) {
+        return !itemStack.isEmpty() && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("ElementData");
+    }
+
+    // 记录伤害到生物的 NBT 数据中
+    private void recordDamage(EntityLivingBase entity, float damage) {
+        entity.getEntityData().setFloat("REdamage", damage);
+    }
+
+    // 判断是否来自副手的攻击
+    private boolean isOffHandAttack(DamageSource source) {
+        String damageType = source.getDamageType();
+        return damageType.equals("player.offhand") || damageType.contains("offhand");
+    }
+
+    // 安排逻辑 同时获取必要的参数
+    private void processReaction(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker, float damage) {
+        ElementDepot itemElement = ElementDepot.valueOf(getElementData(stack).toUpperCase());
+        recordDamage(target, damage);
+        reaction(target, itemElement, attacker);
+    }
+
+    // 获取物品的 ElementData
+    public static String getElementData(ItemStack stack) {
+        if (stack.hasTagCompound() && stack.getTagCompound().hasKey("ElementData")) {
+            return stack.getTagCompound().getString("ElementData").toUpperCase();
+        }
+        return "DEFAULT";
+    }
+
+    //一个元素来了,若能发生 同元素反应 就发生,若不能且不能发生 不同元素反应 就 加若干元素数值 或 添加新元素
+    //随着生物nbt更新,发生//元素衰减和消失//
 
     // 元素反应
     public static void reaction(EntityLivingBase target, ElementDepot newElement, EntityLivingBase attacker) {
@@ -52,6 +121,7 @@ public class elementControl {
         target.writeEntityToNBT(nbt);
     }
 
+    //以下三个函数均完全从属于reaction函数
     // 添加新元素
     public static void addElement(EntityLivingBase target, ElementDepot element) {
         NBTTagCompound nbt = target.getEntityData();
@@ -71,21 +141,8 @@ public class elementControl {
         target.writeEntityToNBT(nbt);
     }
 
-    // 每 5 秒 (100 tick) 使元素数值减少到原来的 0.72 倍
-    public static void clearElement(EntityLivingBase target) {
-        NBTTagCompound nbt = target.getEntityData();
-        NBTTagCompound elementData = nbt.getCompoundTag("ElementData");
-
-        for (String key : elementData.getKeySet()) {
-            int newValue = (int) (elementData.getInteger(key) * 0.72);
-            elementData.setInteger(key, newValue);
-        }
-
-        nbt.setTag("ElementData", elementData);
-        target.writeEntityToNBT(nbt);
-    }
-
     //计算元素数值增加多少
+    //与 onLivingDamage 事件直接关联
     public static int damageCount(EntityLivingBase target) {
         float damage = 0;
         if (target.getEntityData().hasKey("REdamage")) {
@@ -93,6 +150,4 @@ public class elementControl {
         }
         return 25+(int)damage;
     }
-
-
 }
