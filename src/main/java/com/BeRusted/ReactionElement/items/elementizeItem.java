@@ -31,13 +31,6 @@ public class elementizeItem extends Item {
         this.setCreativeTab(CreativeTabsRegister.MainTab);
         this.element = element;
     }
-    /*
-    // 确保物品合成出来时有 NBT
-    @Override
-    public void onCreated(ItemStack stack, World worldIn, EntityPlayer player) {
-        ensureElementData(stack);
-    }
-    */
 
     // 确保物品的 NBT 存在
     private void ensureElementData(ItemStack stack) {
@@ -47,7 +40,6 @@ public class elementizeItem extends Item {
         stack.getTagCompound().setString("ElementData", element.getName());
     }
 
-    // 在物品信息中显示元素 ( 同时也是保证物品的 NBT 存在 )
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         ensureElementData(stack);

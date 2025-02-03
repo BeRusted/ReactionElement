@@ -12,6 +12,7 @@ import net.minecraft.util.DamageSource;
 
 // 监听生物受到伤害事件，只有来自带元素 NBT 的物品的攻击才会记录 REdamage
 public class controlReaction {
+    //触发原因是生物受到伤害( onLivingDamageEvent )
     @SubscribeEvent
     public void onLivingDamageEvent(LivingDamageEvent event) {
         EntityLivingBase entity = event.getEntityLiving();
@@ -46,29 +47,34 @@ public class controlReaction {
     }
 
     // 检查物品是否包含 "ElementData" NBT 标签
+    // 完全从属于 onLivingDamageEvent
     private boolean hasElementData(ItemStack itemStack) {
         return !itemStack.isEmpty() && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey("ElementData");
     }
 
-    // 记录伤害到生物的 NBT 数据中
-    private void recordDamage(EntityLivingBase entity, float damage) {
-        entity.getEntityData().setFloat("REdamage", damage);
-    }
-
     // 判断是否来自副手的攻击
+    // 完全从属于 onLivingDamageEvent
     private boolean isOffHandAttack(DamageSource source) {
         String damageType = source.getDamageType();
         return damageType.equals("player.offhand") || damageType.contains("offhand");
     }
 
     // 安排逻辑 同时获取必要的参数
+    // 完全从属于 onLivingDamageEvent
     private void processReaction(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker, float damage) {
         ElementDepot itemElement = ElementDepot.valueOf(getElementData(stack).toUpperCase());
         recordDamage(target, damage);
         reaction(target, itemElement, attacker);
     }
 
+    // 记录伤害到生物的 NBT 数据中
+    // 完全从属于 processReaction
+    private void recordDamage(EntityLivingBase entity, float damage) {
+        entity.getEntityData().setFloat("REdamage", damage);
+    }
+
     // 获取物品的 ElementData
+    // 完全从属于 processReaction
     public static String getElementData(ItemStack stack) {
         if (stack.hasTagCompound() && stack.getTagCompound().hasKey("ElementData")) {
             return stack.getTagCompound().getString("ElementData").toUpperCase();
@@ -92,7 +98,7 @@ public class controlReaction {
 
         if (elementData.hasKey(newElementName)) { // 检查是否已有相同元素
             int currentValue = elementData.getInteger(newElementName);
-            if (currentValue >= 100) {
+            if (currentValue >= 20) {
                 reactionDepot.invokeReaction(newElementName, newElementName, target, attacker);//发生同元素反应
                 elementData.setInteger(newElementName, 0); // 清空该元素的计数
                 sameElementReacted =true;
@@ -102,14 +108,14 @@ public class controlReaction {
         if (!sameElementReacted) { // 仅在未发生同元素反应时，检查不同元素反应
             String reactingElement = null;
             for (String key : elementData.getKeySet()) {
-                if (!key.equals(newElementName) && elementData.getInteger(key) >= 50) {//循环一遍找数值大于 50 的不同元素
+                if (!key.equals(newElementName) && elementData.getInteger(key) >= 10) {//循环一遍找数值大于 50 的不同元素
                     reactingElement = key;
                     break;
                 }
             }
             if (reactingElement != null) {
                 reactionDepot.invokeReaction(newElementName, reactingElement, target, attacker); // 触发不同元素反应
-                elementData.setInteger(reactingElement, elementData.getInteger(reactingElement) - 50); // 扣除反应元素计数 50
+                elementData.setInteger(reactingElement, elementData.getInteger(reactingElement) - 10); // 扣除反应元素计数 50
             } else if (!elementData.hasKey(newElementName)) {
                 addElement(target, newElement); // 仅在无法发生元素反应且这个元素不存在时添加新元素
                 accumulateElementNumber(target, newElement, damageCount(target));
@@ -142,12 +148,11 @@ public class controlReaction {
     }
 
     //计算元素数值增加多少
-    //与 onLivingDamage 事件直接关联
     public static int damageCount(EntityLivingBase target) {
         float damage = 0;
         if (target.getEntityData().hasKey("REdamage")) {
             damage = target.getEntityData().getFloat("REdamage");
         }
-        return 25+(int)damage;
+        return 10+(int)damage;
     }
 }
