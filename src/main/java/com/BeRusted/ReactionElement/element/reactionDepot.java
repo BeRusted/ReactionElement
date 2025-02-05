@@ -1,6 +1,17 @@
 package com.BeRusted.ReactionElement.element;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+
 import java.lang.reflect.Method;
 
 public class reactionDepot {
@@ -28,39 +39,71 @@ public class reactionDepot {
 
     // 同元素反应 //
 
-    // 火火     炎爆     被攻击者额外受到最后一次伤害的50%
+    // 火火 - 炎爆: 被攻击者额外受到最后一次伤害的50%
     public static void fireAndfire(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生火火同元素反应");
+        float lastDamage = target.getEntityData().getFloat("REdamage") * 0.5f;
+        target.attackEntityFrom(DamageSource.ON_FIRE, lastDamage);
     }
 
-    // 水水     逆流     被攻击者额外被击飞一格
+    // 水水 - 逆流: 被攻击者受到额外击飞
     public static void waterAndwater(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生水水同元素反应");
+        target.addVelocity(0, 0.5D, 0);
+        target.velocityChanged = true;
     }
 
-    // 冰冰     极寒     被攻击者受到0.25s的缓慢5
+    // 冰冰 - 极寒: 被攻击者受到0.25s的缓慢5
     public static void iceAndice(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生冰冰同元素反应");
+        target.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 5, 4));
     }
 
-    // 生命生命     吸血     攻击者回复被攻击最后一次收到的伤害的50%
+    // 生命生命 - 吸血: 攻击者回复被攻击者最后一次受到伤害的50%
     public static void healthAndhealth(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生生命生命同元素反应");
+        float healAmount = target.getEntityData().getFloat("REdamage") * 0.5f;
+        attacker.heal(healAmount);
     }
 
-    // 电电     闪电     被攻击者受到一次雷击(该次雷击只让该生物受到影响)   //受到5点伤害并同时在脚底下生成一个火并同时播放雷的声音
+    // 电电 - 闪电: 被攻击者受到5点伤害, 播放雷声, 在被攻击者脚底生成火
     public static void lightningAndlightning(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生电电同元素反应");
+        World world = target.world;
+        target.attackEntityFrom(DamageSource.LIGHTNING_BOLT, 5.0F);
+        BlockPos firePos = target.getPosition();
+        if (world.isAirBlock(firePos)) {
+            world.setBlockState(firePos, Blocks.FIRE.getDefaultState());
+        }
+        world.playSound(null, firePos, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.WEATHER, 1.0F, 1.0F);
     }
 
-    // 光光     修复     每次触发回复攻击者所有装备(指身穿戴的四件装备)和主副手的武器的耐久(5点)
+    // 光光 - 修复: 每次触发回复攻击者所有装备和主副手武器的耐久(5点)
     public static void lightAndlight(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生光光同元素反应");
+        for (ItemStack item : attacker.getArmorInventoryList()) {
+            if (item.isItemDamaged()) {
+                item.setItemDamage(Math.max(0, item.getItemDamage() - 5));
+            }
+        }
+        ItemStack mainHand = attacker.getHeldItemMainhand();
+        ItemStack offHand = attacker.getHeldItemOffhand();
+        if (mainHand.isItemDamaged()) {
+            mainHand.setItemDamage(Math.max(0, mainHand.getItemDamage() - 5));
+        }
+        if (offHand.isItemDamaged()) {
+            offHand.setItemDamage(Math.max(0, offHand.getItemDamage() - 5));
+        }
     }
 
-    // 暗暗     障目     被攻击者如果是玩家,则受到0.75s失明,如果是非玩家生物,则无法索敌0.25s
+    // 暗暗 - 障目: 玩家0.75s失明，非玩家生物无法索敌0.25s
     public static void darkAnddark(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生暗暗同元素反应");
+        if (target instanceof net.minecraft.entity.player.EntityPlayer) {
+            target.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 15));
+        } else {
+            target.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 5));
+        }
     }
 
     // 不同元素反应 //
@@ -125,7 +168,7 @@ public class reactionDepot {
         System.out.println("发生冰生命不同元素反应");
     }
 
-    // 冰电     超导     减少被攻击者两点盔甲韧性,可叠加,持续30s,每次叠加刷新持续时间
+    // 冰电     超导     被攻击者下次受到的攻击的伤害会提升25%,可叠加,持续30s,每次叠加刷新持续时间
     public static void iceAndlightning(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生冰电不同元素反应");
     }
@@ -135,7 +178,7 @@ public class reactionDepot {
         System.out.println("发生冰光不同元素反应");
     }
 
-    // 冰暗     侵蚀     被攻击者下次受到的攻击的伤害会提升25%,可叠加,持续30s,每次叠加刷新持续时间
+    // 冰暗     侵蚀     被攻击者下次攻击的伤害会降低50%
     public static void iceAnddark(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生冰暗不同元素反应");
     }
@@ -145,12 +188,12 @@ public class reactionDepot {
         System.out.println("发生生命电不同元素反应");
     }
 
-    // 生命光     奇迹     增加攻击者的最大生命值,一次两点,持续30s
+    // 生命光     奇迹     增加攻击者的最大生命值,一次两点,持续30s,可叠加,每次叠加刷新持续时间
     public static void healthAndlight(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生生命光不同元素反应");
     }
 
-    // 生命暗     贯伤     减少被攻击者的最大生命,一次两点,,最低降至只有1点血,若被攻击者是非玩家生物则永久生效,是玩家则持续30s
+    // 生命暗     贯伤     减少被攻击者的最大生命,一次两点,,最低降至只有1点血,若被攻击者是非玩家生物则永久生效,是玩家则持续30s,可叠加,每次叠加刷新持续时间
     public static void healthAnddark(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生生命暗不同元素反应");
     }
@@ -165,7 +208,7 @@ public class reactionDepot {
         System.out.println("发生电暗不同元素反应");
     }
 
-    // 光暗     混沌     给被攻击者加随机负面效果或给攻击者加随机正面效果
+    // 光暗     混沌     给被攻击者加随机负面效果或给攻击者加随机正面效果,每个效果都持续30s,若随到同样的效果,则提升一级(可以的情况下)并刷新持续时间
     public static void lightAnddark(EntityLivingBase target, EntityLivingBase attacker) {
         System.out.println("发生光暗不同元素反应");
     }
