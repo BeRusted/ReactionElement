@@ -13,6 +13,19 @@ item.reaction_element.bow_sword.name=弓剑
 
 item.reaction_element.aether_dark_blade.name=§6现死之眼寂灭长刃
 item.reaction_element.aether_dark_blade.named=%s的现死之眼寂灭长刃
+item.reaction_element.aether_light_sword.name=§6慈悲之怀苏生短剑
+item.reaction_element.aether_light_sword.named=%s的慈悲之怀苏生短剑
+item.reaction_element.aether_health_halberd.name=§6断生绝境荫息重戟
+item.reaction_element.aether_health_halberd.named=%s的断生绝境荫息重戟
+item.reaction_element.aether_lightning_crossbow.name=§6天裂万钧追魂巨弩
+item.reaction_element.aether_lightning_crossbow.named=%s的天裂万钧追魂巨弩
+item.reaction_element.aether_fire_bow.name=§6燎原炎息焚躯强弓
+item.reaction_element.aether_fire_bow.named=%s的燎原炎息焚躯强弓
+item.reaction_element.aether_water_axe.name=§6湮渊潮咒涌吸贯斧
+item.reaction_element.aether_water_axe.named=%s的湮渊潮咒涌吸贯斧
+item.reaction_element.aether_ice_hammer.name=§6凝时静刻碎骨战锤
+item.reaction_element.aether_ice_hammer.named=%s的凝时静刻碎骨战锤
+
 element.lightning=霆电
 element.health=翠生
 element.dark=冥混

@@ -11,6 +11,18 @@ item.reaction_element.bow_sword.name=Bow Sword
 
 item.reaction_element.aether_dark_blade.name=§6Deathly stare of the Silencing Blade
 item.reaction_element.aether_dark_blade.named=%s's Deathly Stare of the Silencing Blade
+item.reaction_element.aether_light_sword.name=§6Merciful grace of the Reviving Sword
+item.reaction_element.aether_light_sword.named=%s's Merciful grace of the Reviving Sword
+item.reaction_element.aether_health_halberd.name=§6Final breath of the Suffocating Halberd
+item.reaction_element.aether_health_halberd.named=%s's Final breath of the Suffocating Halberd
+item.reaction_element.aether_lightning_crossbow.name=§6Fated Calamity of the Soulpiercing Crossbow
+item.reaction_element.aether_lightning_crossbow.named=%s's Fated Calamity of the Soulpiercing Crossbow
+item.reaction_element.aether_fire_bow.name=§6Infernal tempest of the Incinerating Bow
+item.reaction_element.aether_fire_bow.named=%s's Infernal tempest of the Incinerating Bow
+item.reaction_element.aether_water_axe.name=§6Abyssal Tide of the Devouring Axe
+item.reaction_element.aether_water_axe.named=%s's Abyssal Tide of the Devouring Axe
+item.reaction_element.aether_ice_hammer.name=§6Eternal Second of the Shattering Hammer
+item.reaction_element.aether_ice_hammer.named=%s's Eternal Second of the Shattering Hammer
 
 element.lightning=Thunderbolt
 element.health=Verdant
