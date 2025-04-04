@@ -1,0 +1,23 @@
+item.reaction_element.symbol_item.name=§6Aether drop
+tooltip.symbol_item.introduction=#The primordial origin of the universe, slumbering beyond countless eons, can only be awakened by a traveler who truly understands the essence of the elements.
+item.reaction_element.fire_sword.name=Flame Sword
+item.reaction_element.ice_sword.name=Ice Sword
+item.reaction_element.lightning_sword.name=Lightning Sword
+item.reaction_element.dark_sword.name=Dark Sword
+item.reaction_element.water_sword.name=Water Sword
+item.reaction_element.health_sword.name=Health Sword
+item.reaction_element.light_sword.name=Light Sword
+item.reaction_element.bow_sword.name=Bow Sword
+
+item.reaction_element.aether_dark_blade.name=§6Deathly stare of the Silencing Blade
+item.reaction_element.aether_dark_blade.named=%s's Deathly Stare of the Silencing Blade
+
+element.lightning=Thunderbolt
+element.health=Verdant
+element.dark=Abyss
+element.light=Cosmos
+element.fire=Blaze
+element.water=Aqua
+element.ice=Frost
+
+itemGroup.reaction_element.maintab=Reaction Element Items
