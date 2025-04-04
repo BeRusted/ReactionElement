@@ -36,7 +36,7 @@ public class AetherDarkBlade extends ItemSword {
     private static final Map<UUID, Long> glowCooldownMap = new HashMap<>();
     private static final long GLOW_INTERVAL_MS = 5000;
 
-
+    // 材质
     public static final Item.ToolMaterial WeaponMaterial = EnumHelper.addToolMaterial(
             "DARK",      // 名字（必须大写，否则有时渲染出错）
             3,             // harvestLevel（采掘等级，3 = 钻石）
@@ -54,7 +54,7 @@ public class AetherDarkBlade extends ItemSword {
         this.element = ElementDepot.DARK;
 
     }
-
+    // 元素 tag
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (!stack.hasTagCompound()) {
@@ -62,7 +62,7 @@ public class AetherDarkBlade extends ItemSword {
         }
         stack.getTagCompound().setString("ElementData", element.getName());
     }
-
+    // 创生时修改武器名字
     @Override
     public void onCreated(ItemStack stack, World worldIn, EntityPlayer playerIn) {
         if (!stack.hasTagCompound()) {
@@ -73,6 +73,7 @@ public class AetherDarkBlade extends ItemSword {
 
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isSelected) {
+        // 制作时更新武器名字
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
 
         if (entity instanceof EntityPlayer) {
@@ -80,7 +81,8 @@ public class AetherDarkBlade extends ItemSword {
             if (!tag.hasKey("creator")) {
                 tag.setString("creator", (entity).getName());
             }
-        }/*
+        }
+        //距离攻击
         if (!world.isRemote && entity instanceof EntityPlayer && isSelected) {
             EntityPlayer player = (EntityPlayer) entity;
 
@@ -95,24 +97,24 @@ public class AetherDarkBlade extends ItemSword {
             } else {
                 shouldGlow = false;
             }
-
+            // 50格
             AreaEffectHelper.getEntitiesAround(player, world, 50, (target) -> {
                 if (shouldGlow) {
                     target.addPotionEffect(new PotionEffect(MobEffects.GLOWING, 120));
                 }
             });
-
+            // 10格
             AreaEffectHelper.getEntitiesAround(player, world, 10, (target) -> {
                 target.attackEntityFrom(DamageSource.MAGIC, 1.0F);
             });
-        }*/
+        }
     }
-
+    // 名称修改
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return NameHelper.getLocalizedDisplayName(stack, this.getUnlocalizedNameInefficiently(stack));
     }
-
+    // 设定伤害和攻速
     @Override
     public Multimap<String, AttributeModifier> getAttributeModifiers(EntityEquipmentSlot slot, ItemStack stack) {
         Multimap<String, AttributeModifier> modifiers = HashMultimap.create();  // 不调用 super，自己建一个新的
@@ -130,11 +132,10 @@ public class AetherDarkBlade extends ItemSword {
 
         return modifiers;
     }
-
+    // 特定条件时的攻击伤害
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker) {
         // 只对特定目标检查是否发光
-        System.out.println("[DEBUG] is glowing: " + target.isPotionActive(MobEffects.GLOWING));
         if (!target.isPotionActive(MobEffects.GLOWING)) {
             target.attackEntityFrom(DamageSource.causeMobDamage(attacker), 100);
         }
