@@ -9,10 +9,14 @@ import net.minecraftforge.fml.common.Mod;
 public class EventsRegister {
     public EventsRegister(){
 
-
+        //常驻注册的事件
         MinecraftForge.EVENT_BUS.register(new onLivingUpdate());
         MinecraftForge.EVENT_BUS.register(new controlReaction());
         MinecraftForge.EVENT_BUS.register(new elementTooltipHandler());
+
+        //临时注册的事件
+        MinecraftForge.EVENT_BUS.register(new onItemHolding());
+        //MinecraftForge.EVENT_BUS.register(new MouseControl());
         //MinecraftForge.EVENT_BUS.register(new AdvancedWeaponsDetection());
 
 
